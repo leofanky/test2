@@ -1,6 +1,5 @@
 FROM golang:latest
 WORKDIR /app
-COPY main.go ./
-RUN go build main.go
+COPY 	multygo_master ./
 EXPOSE 9090
-CMD ["./main"]
+CMD ["./multygo_master"]
