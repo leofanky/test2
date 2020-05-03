@@ -1,19 +1,12 @@
-pipeline{
-    agent any
-    tools {
-        go {'go'}
-        }
 
-    stages {
-        stage('Build') { 
-            steps{
-                sh 'go build'
-            }
-        }        
-        stage('Publish artefact') {
-            steps{
-                archiveArtifacts 'multygo_master'
-            }
-        }
-    }
+pipeline {
+	agent any
+	stages {
+		stage('Copy artifact') {
+			steps {
+                copyArtifacts filter: 'multygo_master', fingerprintArtifacts: true, projectName: 'multygo/master', selector: lastSuccessful()
+			}
+		}
+	
+	}
 }
